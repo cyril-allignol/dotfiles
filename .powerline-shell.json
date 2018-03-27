@@ -1,0 +1,12 @@
+{
+    "segments": [
+        "ssh",
+        "cwd",
+        "git",
+        "jobs",
+        "root"
+    ],
+    "cwd": {
+        "max_depth": 4
+    }
+}
