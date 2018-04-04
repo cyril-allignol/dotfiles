@@ -60,6 +60,18 @@ export ALTERNATE_EDITOR='nano'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -c -a emacs'
 
+# grepping for processes
+psgrep() {
+	if [ ! -z $1 ] ; then
+		ps aux | grep $1 | grep -v grep # don't show the grep itself
+	else
+		echo "Provide a name to grep for!"
+	fi
+}
+
+# Show those memory greedy guts
+alias memusage='ps h -eo pmem,comm | sort -nr | head'
+
 # Quelques alias...
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -73,6 +85,7 @@ alias ll='ls -Ahl'
 alias lsd='ls -o | grep ^d'
 alias ls='ls --ignore-backups --classify --color'
 alias grep='grep --color=auto'
+alias back='cd $OLDPWD'
 
 export LESS='-R'
 
