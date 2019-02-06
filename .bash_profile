@@ -87,7 +87,7 @@ alias ls='ls --ignore-backups --classify --color'
 alias grep='grep --color=auto'
 alias back='cd $OLDPWD'
 
-export LESS='-R'
+export LESS='-RiQ'
 
 #alias ocaml='ledit ocaml'
 alias ocaml='rlwrap -c -R -pRed ocaml'
