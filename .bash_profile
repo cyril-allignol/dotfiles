@@ -101,7 +101,7 @@ alias pbpaste='xclip -o -selection c'
 shopt -s cdspell
 
 # OPAM configuration
-. /home/allignol/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+. /home/$USER/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 # Colorisation des manpages
 export LESS_TERMCAP_mb=$'\e[01;32m'       # begin blinking
@@ -111,3 +111,5 @@ export LESS_TERMCAP_se=$'\e[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
+
+source .private
