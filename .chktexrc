@@ -1,0 +1,21 @@
+TabSize = 4
+
+CmdLine
+{
+
+}
+
+UserWarn
+{
+        \unknown
+}
+
+WipeArg
+{
+        \lstinline:[]{}
+}
+
+VerbEnvir
+{
+        tcblisting
+}
