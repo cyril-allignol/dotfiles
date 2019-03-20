@@ -88,6 +88,7 @@ alias grep='grep --color=auto'
 alias back='cd $OLDPWD'
 
 export LESS='-RiQ'
+alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -M '
 
 #alias ocaml='ledit ocaml'
 alias ocaml='rlwrap -c -R -pRed ocaml'
