@@ -21,6 +21,7 @@ export HISTFILESIZE=20000
 export HISTIGNORE="cd:ls:[bf]g:clear"
 export HISTTIMEFORMAT="%d/%m/%Y - %T : "
 shopt -s histappend
+shopt -s cmdhist
 
 set -o notify
 shopt -s checkwinsize # Pour les terminaux redimmensionnables
@@ -112,4 +113,4 @@ export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
 
-source .private
+source ~/.private
