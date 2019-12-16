@@ -87,6 +87,7 @@ alias lsd='ls -o | grep ^d'
 alias ls='ls --ignore-backups --classify --color'
 alias grep='grep --color=auto'
 alias back='cd $OLDPWD'
+alias diff='diff --color'
 
 export LESS='-RiQ'
 alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -M '
