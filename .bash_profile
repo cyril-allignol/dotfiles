@@ -102,6 +102,11 @@ alias pbpaste='xclip -o -selection c'
 # Directory typos
 shopt -s cdspell
 
+# Where to cd?
+shopt -s cdable_vars
+export dl="$HOME/Téléchargements"
+export cloud="$HOME/Cloud"
+
 # OPAM configuration
 . /home/$USER/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
