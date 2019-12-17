@@ -28,13 +28,6 @@ shopt -s checkwinsize # Pour les terminaux redimmensionnables
 
 umask 022
 
-# PVM
-export PVM_ROOT=/usr/lib/pvm3
-export PVM_ARCH="LINUX64"
-export PVM_RSH=`which ssh`
-export PVM_TMP=/tmp
-export PATH=$PVM_ROOT/bin:$PATH
-
 # The prompt
 BlueBG="$(tput setab 4)"
 NC="$(tput sgr0)" # No Color
