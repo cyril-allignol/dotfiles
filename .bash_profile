@@ -60,6 +60,7 @@ export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
 export ALTERNATE_EDITOR='nano'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -c -a emacs'
+export PAGER='less'
 
 # grepping for processes
 psgrep() {
@@ -89,8 +90,8 @@ alias grep='grep --color=auto'
 alias back='cd $OLDPWD'
 alias diff='diff --color'
 
-export LESS='-RiQ'
-alias lessh='LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" less -M '
+export LESS='-RiQSFX'
+eval $(lesspipe)
 
 #alias ocaml='ledit ocaml'
 alias ocaml='rlwrap -c -R -pRed ocaml'

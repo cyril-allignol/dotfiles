@@ -1,0 +1,26 @@
+#!/bin/bash
+
+langs=`source-highlight --lang-list | cut -f1 -d" " | tr '\n' '|' | sed 's/.$//'`
+ext=${1##*.}
+
+case $1 in
+    *.docx)
+        docx2txt $1 -;;
+    *.doc)
+        catdoc $1;;
+    *.bashrc|*.bash-profile|*.bash-aliases)
+       source-highlight --src-lang=bash -f esc --style-file=esc.style -i $1;;
+    *) # otherwise, try coloring with source-highlight
+        if [[ $ext =~ $(echo ^\($langs\)$) ]]; then
+            source-highlight -f esc --style-file=esc.style -i $1
+        else exit 1
+        fi
+esac
+
+exit 0
+
+# [[ -d $fichier ]] && {
+#     echo "exec tree -C -A $fichier"
+#     echo
+#     exec tree -C -A $fichier
+# }
