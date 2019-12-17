@@ -86,3 +86,4 @@ export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
 
 source ~/.private
+source ~/.bash_aliases
