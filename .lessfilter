@@ -1,26 +1,47 @@
 #!/bin/bash
 
-langs=`source-highlight --lang-list | cut -f1 -d" " | tr '\n' '|' | sed 's/.$//'`
-ext=${1##*.}
+function cmdexist() {
+    which "$1" >/dev/null
+}
 
-case $1 in
-    *.docx)
-        docx2txt $1 -;;
-    *.doc)
-        catdoc $1;;
-    *.bashrc|*.bash-profile|*.bash-aliases)
-       source-highlight --src-lang=bash -f esc --style-file=esc.style -i $1;;
-    *) # otherwise, try coloring with source-highlight
-        if [[ $ext =~ $(echo ^\($langs\)$) ]]; then
-            source-highlight -f esc --style-file=esc.style -i $1
+function try() {
+    cmdexist "$1" && "$@"
+}
+
+function hilite() {
+    if [ $# -gt 1 ]; then
+        try source-highlight --src-lang=$2 -f esc --style-file=esc.style -i "$1"
+    else try source-highlight -f esc --style-file=esc.style -i "$1"
+    fi
+}
+
+ext=${1##*.}
+filetype=$(mimetype -Lb "$1")
+
+langs=$(source-highlight --lang-list | cut -f1 -d" " | tr '\n' '|' | sed 's/.$//')
+
+case "$1" in
+    *.docx) try docx2txt "$1" -;;
+    *.doc)  try catdoc "$1";;
+    *.odt)  try odt2txt "$1";;
+    *.ps)   try ps2ascii "$1";;
+    *.xls|*.xlsx|*.ods|*.gnumeric|*.csv)
+        try ssconvert -T Gnumeric_stf:stf_csv "$1" fd://1 | column -t -s ',';;
+    *.htm|*.html) try lynx -dump "$1";;
+    *.deb) try dpkg-deb --contents "$1";;
+    *.bashrc|*.bash_profile|*.bash_aliases) hilite "$1" bash;;
+    *.[jJ][pP][gG]|*.[jJ][pP][eE][gG]) try exiv2 "$1";;
+    *)
+        if [[ $filetype == "inode/directory" ]]; then
+            try tree -C "$1"
+        elif [[ $filetype =~ ^application/x-*$ ]]; then
+            try readelf -h "$1"
+        elif [[ $ext =~ $(echo ^\($langs\)$) ]]; then
+            hilite "$1"
+        elif [[ $(basename "$1") =~ ^Makefile(.*)?$ ]]; then
+            hilite "$1" makefile
         else exit 1
         fi
 esac
 
 exit 0
-
-# [[ -d $fichier ]] && {
-#     echo "exec tree -C -A $fichier"
-#     echo
-#     exec tree -C -A $fichier
-# }
