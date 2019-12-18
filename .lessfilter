@@ -1,11 +1,7 @@
 #!/bin/bash
 
-function cmdexist() {
-    which "$1" >/dev/null
-}
-
 function try() {
-    cmdexist "$1" && "$@"
+    which "$1" >/dev/null && "$@"
 }
 
 function hilite() {
@@ -18,7 +14,8 @@ function hilite() {
 ext=${1##*.}
 filetype=$(mimetype -Lb "$1")
 
-langs=$(source-highlight --lang-list | cut -f1 -d" " | tr '\n' '|' | sed 's/.$//')
+langs=$(try source-highlight --lang-list |\
+            cut -f1 -d" " | tr '\n' '|' | sed 's/.$//')
 
 case "$1" in
     *.docx) try docx2txt "$1" -;;
@@ -32,14 +29,10 @@ case "$1" in
     *.bashrc|*.bash_profile|*.bash_aliases) hilite "$1" bash;;
     *.[jJ][pP][gG]|*.[jJ][pP][eE][gG]) try exiv2 "$1";;
     *)
-        if [[ $filetype == "inode/directory" ]]; then
-            try tree -C "$1"
-        elif [[ $filetype =~ ^application/x-*$ ]]; then
-            try readelf -h "$1"
-        elif [[ $ext =~ $(echo ^\($langs\)$) ]]; then
-            hilite "$1"
-        elif [[ $(basename "$1") =~ ^Makefile(.*)?$ ]]; then
-            hilite "$1" makefile
+        if   [[ $filetype == "inode/directory" ]];      then try tree -C "$1"
+        elif [[ $filetype =~ ^application/x-*$ ]];      then try readelf -h "$1"
+        elif [[ $ext =~ $(echo ^\($langs\)$) ]];        then hilite "$1"
+        elif [[ $(basename "$1") =~ ^Makefile(.*)?$ ]]; then hilite "$1" makefile
         else exit 1
         fi
 esac
