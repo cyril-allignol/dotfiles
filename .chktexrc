@@ -17,5 +17,5 @@ WipeArg
 
 VerbEnvir
 {
-        tcblisting
+        tcblisting grammar
 }
