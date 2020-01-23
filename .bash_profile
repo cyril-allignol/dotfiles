@@ -36,6 +36,8 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+source ~/.hledger-completion.bash
+
 # Quelques variables d'environnement utiles en mode interactif uniquement
 export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
 
