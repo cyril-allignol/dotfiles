@@ -29,18 +29,7 @@ shopt -s checkwinsize # Pour les terminaux redimmensionnables
 umask 022
 
 # The prompt
-BlueBG="$(tput setab 4)"
-NC="$(tput sgr0)" # No Color
-
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-
-if [[ `command -v powerline-shell` && $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-else
-    PS1="\[$BlueBG\]\u@\h \w\$\[$NC\] "
-fi
+source ~/pureline/pureline ~/.pureline.conf
 
 # Completion
 if [ -f /etc/bash_completion ]; then
