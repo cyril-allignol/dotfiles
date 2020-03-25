@@ -16,6 +16,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cp='cp -ip'
+alias cpv='rsync -ah --info=progress2'
 alias mv='mv -i'
 #alias rm='rm -i'
 alias la='ls -A'
@@ -34,3 +35,14 @@ alias ocaml='rlwrap -c -R -pRed ocaml'
 # Copy to/from X clipboard
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -o -selection c'
+
+# Simpler mount output
+alias mnt='mount | grep -E ^/dev | column -t'
+
+# Better tools, if available
+if [ "$(command -v bat)" 2>&1 ]; then alias cat='bat'; fi
+if [ "$(command -v prettyping)" 2>&1 ]; then alias ping='prettyping'; fi
+if [ "$(command -v htop)" 2>&1 ]; then alias top='htop'; fi
+if [ "$(command -v ncdu)" 2>&1 ]; then
+    alias du='ncdu --color dark -rr -x --exclude .git';
+fi
