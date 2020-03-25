@@ -27,6 +27,7 @@ case "$1" in
     *.htm|*.html) try lynx -dump "$1";;
     *.deb) try dpkg-deb --contents "$1";;
     *.bashrc|*.bash_profile|*.bash_aliases) hilite "$1" bash;;
+    *.md) mdv "$1";;
     *.[jJ][pP][gG]|*.[jJ][pP][eE][gG]) try exiv2 "$1";;
     *)
         if   [[ $filetype == "inode/directory" ]];      then try tree -C "$1"
