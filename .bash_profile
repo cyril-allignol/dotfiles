@@ -1,6 +1,10 @@
 export SYSTEM=`uname`
 
-SYSTEMPATH=/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/bin:/usr/bin/X11
+SYSTEMPATH=/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/bin:/usr/bin/X11:/opt
+
+if [ -d /snap ] ; then
+    SYSTEMPATH=$SYSTEMPATH:/snap/bin
+fi
 
 if [ -d $HOME/.local/bin ] ; then
   PATH=$HOME/.local/bin:$PATH
@@ -71,3 +75,6 @@ export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
 
 source ~/.private
 source ~/.bash_aliases
+if [ -f ~/.bash_local ] ; then
+    source ~/.bash_local
+fi
