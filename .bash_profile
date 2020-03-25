@@ -6,8 +6,12 @@ if [ -d /snap ] ; then
     SYSTEMPATH=$SYSTEMPATH:/snap/bin
 fi
 
+if [ -d $HOME/.cargo/bin ] ; then
+    PATH=$HOME/.cargo/bin:$PATH
+fi
+
 if [ -d $HOME/.local/bin ] ; then
-  PATH=$HOME/.local/bin:$PATH
+    PATH=$HOME/.local/bin:$PATH
 fi
 
 export PATH=$SYSTEMPATH:$PATH:.
