@@ -2,8 +2,8 @@ export SYSTEM=`uname`
 
 SYSTEMPATH=/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/bin:/usr/bin/X11
 
-if [ -d $HOME/bin ] ; then
-  PATH=$HOME/bin:$PATH
+if [ -d $HOME/.local/bin ] ; then
+  PATH=$HOME/.local/bin:$PATH
 fi
 
 export PATH=$SYSTEMPATH:$PATH:.
