@@ -1,0 +1,15 @@
+# Exclude all...
+*
+
+# ... but the desired files
+!.git-crypt
+!.bash_aliases
+!.bash_profile
+!.chktexrc
+!.gitattributes
+!.gitignore
+!.hledger-completion.bash
+!.lessfilter
+!.private
+!.pureline.conf
+!.utoprc
