@@ -41,9 +41,7 @@ umask 022
 eval "$(starship init bash)"
 
 # Completion
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+[ -f /etc/bash_completion ] && . /etc/bash_completion
 
 _pip_completion()
 {
@@ -53,7 +51,7 @@ _pip_completion()
 }
 complete -o default -F _pip_completion pip3
 
-source ~/.hledger-completion.bash
+[ -f $HOME/.hledger-completion.bash ] && . $HOME/.hledger-completion.bash
 
 # Quelques variables d'environnement utiles en mode interactif uniquement
 export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
@@ -75,7 +73,7 @@ export dl="$HOME/Téléchargements"
 export cloud="$HOME/Cloud"
 
 # OPAM configuration
-. /home/$USER/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+. $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 # Colorisation des manpages
 export LESS_TERMCAP_mb=$'\e[01;32m'       # begin blinking
@@ -86,16 +84,12 @@ export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
 
-source ~/.private
-source ~/.bash_aliases
-if [ -f ~/.bash_local ] ; then
-    source ~/.bash_local
-fi
+[ -f $HOME/.private ] && . $HOME/.private
+[ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
+[ -f $HOME/.bash_local ] && . $HOME/.bash_local
 
 # FZF
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] &&
-    source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
-
+[ -f $HOME/.fzf.bash ] && . $HOME/.fzf.bash
 export FZF_DEFAULT_OPTS="--info=inline --cycle"
 export FZF_DEFAULT_COMMAND='fdfind --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
