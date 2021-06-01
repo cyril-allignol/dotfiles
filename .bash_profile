@@ -57,7 +57,7 @@ complete -o default -F _pip_completion pip3
 export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
 
 export ALTERNATE_EDITOR=''
-export EDITOR='emacsclient -nt'
+export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -nc -a emacs'
 export PAGER='less'
 
