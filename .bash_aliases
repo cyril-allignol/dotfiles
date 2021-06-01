@@ -32,6 +32,9 @@ alias diff='diff --color'
 #alias ocaml='ledit ocaml'
 alias ocaml='rlwrap -c -R -pRed ocaml'
 
+alias e='$EDITOR'
+alias em='$VISUAL'
+
 # Copy to/from X clipboard
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -o -selection c'

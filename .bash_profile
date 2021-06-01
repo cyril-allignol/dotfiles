@@ -50,9 +50,9 @@ source ~/.hledger-completion.bash
 # Quelques variables d'environnement utiles en mode interactif uniquement
 export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
 
-export ALTERNATE_EDITOR='nano'
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -c -a emacs'
+export ALTERNATE_EDITOR=''
+export EDITOR='emacsclient -nt'
+export VISUAL='emacsclient -nc -a emacs'
 export PAGER='less'
 
 export LESS='-RiQSFX'
