@@ -43,7 +43,8 @@ alias pbpaste='xclip -o -selection c'
 alias mnt='mount | grep -E ^/dev | column -t'
 
 # Better tools, if available
-if [ "$(command -v bat)" 2>&1 ]; then alias cat='bat'; fi
+if [ "$(command -v fdfind)" 2>&1 ]; then alias fd='fdfind'; fi
+if [ "$(command -v batcat)" 2>&1 ]; then alias cat='batcat'; fi
 if [ "$(command -v prettyping)" 2>&1 ]; then alias ping='prettyping'; fi
 if [ "$(command -v htop)" 2>&1 ]; then alias top='htop'; fi
 if [ "$(command -v ncdu)" 2>&1 ]; then
