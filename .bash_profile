@@ -37,7 +37,8 @@ shopt -s checkwinsize # Pour les terminaux redimmensionnables
 umask 022
 
 # The prompt
-source ~/pureline/pureline ~/.pureline.conf
+# source ~/pureline/pureline ~/.pureline.conf
+eval "$(starship init bash)"
 
 # Completion
 if [ -f /etc/bash_completion ]; then
