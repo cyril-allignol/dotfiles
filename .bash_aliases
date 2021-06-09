@@ -43,10 +43,9 @@ alias pbpaste='xclip -o -selection c'
 alias mnt='mount | grep -E ^/dev | column -t'
 
 # Better tools, if available
-if [ "$(command -v fdfind)" 2>&1 ]; then alias fd='fdfind'; fi
-if [ "$(command -v batcat)" 2>&1 ]; then alias cat='batcat'; fi
-if [ "$(command -v prettyping)" 2>&1 ]; then alias ping='prettyping'; fi
-if [ "$(command -v htop)" 2>&1 ]; then alias top='htop'; fi
-if [ "$(command -v ncdu)" 2>&1 ]; then
-    alias du='ncdu --color dark -rr -x --exclude .git';
-fi
+[ "$(command -v fdfind)" 2>&1 ] && alias fd='fdfind'
+[ "$(command -v batcat)" 2>&1 ] && alias cat='batcat'
+[ "$(command -v prettyping)" 2>&1 ] && alias ping='prettyping --nolegend'
+[ "$(command -v htop)" 2>&1 ] && alias top='htop'
+[ "$(command -v ncdu)" 2>&1 ] &&
+    alias du='ncdu --color dark -rr -x --exclude .git'
