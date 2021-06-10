@@ -46,8 +46,7 @@ alias mnt='mount | grep -E ^/dev | column -t'
 
 # Better tools, if available
 [ "$(command -v fdfind)" 2>&1 ] && alias fd='fdfind'
-[ "$(command -v bat)" 2>&1 ] && alias cat='bat'
-[ "$(command -v batcat)" 2>&1 ] && alias cat='batcat'
+[ "$(command -v bat)" 2>&1 ] && alias cat='bat --theme=ansi'
 [ "$(command -v prettyping)" 2>&1 ] && alias ping='prettyping --nolegend'
 [ "$(command -v htop)" 2>&1 ] && alias top='htop'
 [ "$(command -v ncdu)" 2>&1 ] &&
