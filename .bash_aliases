@@ -1,3 +1,5 @@
+# -*- mode: shell-script; -*-
+
 # Show those memory greedy guts
 alias memusage='ps h -eo pmem,comm | sort -nr | head'
 
