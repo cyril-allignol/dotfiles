@@ -116,3 +116,6 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
+
+# Z for jumping around
+[ -f $HOME/sw/z/z.sh ] && . $HOME/sw/z/z.sh
