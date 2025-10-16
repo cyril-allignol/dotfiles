@@ -51,7 +51,7 @@ alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -o -selection c'
 
 # Simpler mount output
-alias mnt='mount | grep -E ^/dev | column -t'
+alias mnt='mount | /bin/grep -E ^/dev | column -t'
 
 # Better tools, if available
 better () { echo "Consider installing $2 for a better $1"; }
