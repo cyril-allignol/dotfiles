@@ -53,6 +53,7 @@ export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
 export ALTERNATE_EDITOR=''
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -nc -a emacs'
+export SUDO_EDITOR='emacsclient -c -a emacs'
 export PAGER='less'
 
 export LESS='-RiQSFX'
