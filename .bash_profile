@@ -17,16 +17,17 @@ export LC_COLLATE="C"
 export HOSTNAME=`uname -n | /usr/bin/tr '[a-z]' '[A-Z]'`
 export VERSION_CONTROL=numbered
 
-export HISTCONTROL=ignoredups
+# History
+export HISTCONTROL=ignoredups:erasedups:ignorespace
 export HISTSIZE=5000
 export HISTFILESIZE=20000
 export HISTIGNORE="cd:ls:[bf]g:clear"
-export HISTTIMEFORMAT="%d/%m/%Y - %T : "
+export HISTTIMEFORMAT="%Y-%m-%d %T - "
 shopt -s histappend
 shopt -s cmdhist
 
 set -o notify
-shopt -s checkwinsize # Pour les terminaux redimmensionnables
+shopt -s checkwinsize # For re-sizeable terminals
 
 umask 022
 
