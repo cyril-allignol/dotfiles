@@ -70,6 +70,10 @@ export cloud="$HOME/Cloud"
 # OPAM configuration
 . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
+# Python venv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+test -f $HOME/.venv/default/bin/activate && . $_
+
 # Colorisation des manpages
 export LESS_TERMCAP_mb=$'\e[01;32m'       # begin blinking
 export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
