@@ -35,7 +35,7 @@ umask 022
 eval "$(starship init bash)"
 
 # Completion
-[ -f /etc/bash_completion ] && . /etc/bash_completion
+test -f /etc/bash_completion && . $_
 
 _pip_completion()
 {
@@ -45,7 +45,7 @@ _pip_completion()
 }
 complete -o default -F _pip_completion pip3
 
-[ -f $HOME/.hledger-completion.bash ] && . $HOME/.hledger-completion.bash
+test -f $HOME/.hledger-completion.bash && . $_
 
 # Quelques variables d'environnement utiles en mode interactif uniquement
 export ZIPOPT="-yrn .png:.gif:.tiff:.jpg:.Z:.gz:.zip"
@@ -83,9 +83,9 @@ export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
 
-[ -f $HOME/.private ] && . $HOME/.private
-[ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
-[ -f $HOME/.bash_local ] && . $HOME/.bash_local
+test -f $HOME/.private && . $_
+test -f $HOME/.bash_aliases && . $_
+test -f $HOME/.bash_local && . $_
 
 # FZF
 test -f $HOME/.fzf.bash && . $_
