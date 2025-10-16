@@ -1,4 +1,3 @@
-#require "camomile.lib_default"
 #require "lwt_react"
 #require "lambda-term"
 
@@ -7,7 +6,6 @@ let t2str = fun tm ->
 
 let make_prompt = fun ui count s ks (recording, macro_count, macro_counter) ->
   let open Printf in
-  let open CamomileLibraryDefault.Camomile in
   let open LTerm_text in
   let open LTerm_style in
   let open LTerm_geom in
@@ -19,18 +17,19 @@ let make_prompt = fun ui count s ks (recording, macro_count, macro_counter) ->
        let keys = String.concat " " (List.map LTerm_key.to_string_compact ks) in
        if ks = [] then [] else [ S "[ "; B_fg lgreen; S keys; E_fg; S " ]─"] in
      let left =
-       B_fg lcyan :: S (sprintf "─( %s )─< %d >─" (t2str tm) count) :: key_seq
+       B_fg lcyan :: S (sprintf "── %s ── %d ─" (t2str tm) count) :: key_seq
        |> eval in
      let right =
-       B_fg lcyan :: S (sprintf "{ %d }─" macro_counter)
+       B_fg lcyan :: S (sprintf "< %d >─" macro_counter)
        :: (if recording then [S (sprintf "[ %d ]─" macro_count)] else [])
        |> eval in
-     let second_line = eval [ B_bold true; B_fg lcyan; S "\n❯ " ] in
+     (* let second_line = eval [ B_bold true; B_fg lcyan; S "\n❯ " ] in *)
+     let second_line = eval [ B_bold true; B_fg lcyan; S "\n# " ] in
      let llr = Array.length left + Array.length right in
      Array.append (
          if llr > s.cols then Array.sub (Array.append left right) 0 s.cols
          else
-           let sep = UChar.of_int 0x2500 |> Zed_char.unsafe_of_uChar
+           let sep = Uchar.of_int 0x2500 |> Zed_char.unsafe_of_uChar
            and sep_style = { none with foreground = Some lcyan } in
            let line = Array.make (s.cols - llr) (sep, sep_style) in
            Array.concat [ left; line; right ]
