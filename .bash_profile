@@ -1,18 +1,12 @@
 export SYSTEM=`uname`
 
-SYSTEMPATH=/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/bin:/usr/bin/X11:/opt
+SYSTEMPATH=/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/bin:/opt
 
-if [ -d /snap ] ; then
-    SYSTEMPATH=$SYSTEMPATH:/snap/bin
-fi
-
-if [ -d $HOME/.cargo/bin ] ; then
-    PATH=$HOME/.cargo/bin:$PATH
-fi
-
-if [ -d $HOME/.local/bin ] ; then
-    PATH=$HOME/.local/bin:$PATH
-fi
+[ -d /snap/bin ] && SYSTEMPATH=$SYSTEMPATH:/snap/bin
+[ -d $HOME/.cargo/bin ] && PATH=$HOME/.cargo/bin:$PATH
+[ -d $HOME/go/bin ] && PATH=$HOME/go/bin:$PATH
+[ -d $HOME/.local/bin ] && PATH=$HOME/.local/bin:$PATH
+[ -d $HOME/.venv/default/bin ] && PATH=$HOME/.venv/default/bin:$PATH
 
 export PATH=$SYSTEMPATH:$PATH:.
 
