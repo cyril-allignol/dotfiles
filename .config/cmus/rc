@@ -1,0 +1,33 @@
+colorscheme nord
+
+bind -f common u shell ~/.config/cmus/update-library.sh
+bind -f common q quit
+
+set repeat=true
+set aaa_mode=all
+
+# set status_display_program=~/.config/cmus/cmus-feh.sh
+set status_display_program=""
+
+set lib_sort=artist album discnumber title filename
+
+bind -f library a set lib_sort=artist album discnumber title filename
+bind -f library A set lib_sort=album discnumber  title filename
+
+set format_title=cmus
+
+# set format_trackwin=%3n. %t%= %y %d
+# set format_trackwin_va=%3n. %t (%a)%= %y %d
+set format_trackwin= %t%= %y %{?d?%d }
+set format_trackwin_album= %l %= %{?albumduration?%{albumduration} }
+set format_trackwin_va= %t (%a)%= %y %{?d?%d }
+set format_treewin=  %l
+set format_treewin_artist=%a
+
+# set format_current= %a • %l • %02n%= %{?y?%y }
+# set format_current= %a • %l%= %{?y?%y }
+set format_current= %a • %l%{?y? • %y}%=%{?aaa_mode="all"?all} | %1{follow}%1{repeat}%{?shuffle?%1{shuffle} }
+
+# set format_statusline= %{status} %t%= %1{follow}%1{repeat}%1{shuffle} %{?show_playback_position?%{position} %{?duration?/ %{duration} }?%{?duration?%{duration} }}
+set format_statusline= %{?status="."?⯀?%{?status=">"?▶?𑩃}} %t%= %{?show_playback_position?%{position} %{?d?/ %d }?%{?d?%d }}
+# set format_statusline= %{?status="."?[]?%{?status=">"?|>?||}} %t%= %{?show_playback_position?%{position} %{?d?/ %d }?%{?d?%d }}
