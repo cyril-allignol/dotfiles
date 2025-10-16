@@ -1,15 +1,46 @@
-# add_newline = false
-
 [character]
 error_symbol='[✖](bold red)'
 
-[ocaml]
-format='[$version]($style) '
-
-[python]
-format='[$version]($style) '
-
 [memory_usage]
 disabled=false
-format="[${ram_pct}/${swap_pct}]($style) "
+format='[${ram_pct}/${swap_pct}]($style) '
 # threshold=-1
+
+[cmd_duration]
+min_time = 2_000
+format = '[\[$duration\]]($style)'
+
+[directory]
+truncation_symbol = '…/' #'.../'
+read_only = ' '
+# home_symbol = ''
+# before_repo_root_style = 'dimmed'
+repo_root_style = 'purple'
+
+[hostname]
+ssh_only = true
+
+[git_branch]
+ignore_branches = ['master', 'main']
+
+[git_metrics]
+disabled = true
+format = '\(([+$added]($added_style) )([-$deleted]($deleted_style))\) '
+
+[c]
+format='[$name $version]($style) '
+version_format='${raw}'
+
+[ocaml]
+# format = '[$version]($style) '
+format = '[$switch_indicator$switch_name]($style) '
+version_format = '${raw}'
+symbol = ''
+
+[python]
+# format = '[$version]($style) '
+format = '[(${version} )(\($virtualenv\) )]($style)'
+symbol = '󰌠'
+version_format = '${raw}'
+pyenv_version_name = true
+disabled = true
