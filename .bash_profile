@@ -88,10 +88,18 @@ export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline    env \
 [ -f $HOME/.bash_local ] && . $HOME/.bash_local
 
 # FZF
-[ -f $HOME/.fzf.bash ] && . $HOME/.fzf.bash
-export FZF_DEFAULT_OPTS="--info=inline --cycle"
-export FZF_DEFAULT_COMMAND='fdfind --type f'
+test -f $HOME/.fzf.bash && . $_
+export FZF_DEFAULT_OPTS="--info=inline --cycle --style full --height=80% --layout=reverse --margin=1"
+export FZF_DEFAULT_COMMAND='fdfind --type f --exclude ".git"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Nord theme for fzf
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+#     --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1
+#     --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
+#     --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
+#     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
