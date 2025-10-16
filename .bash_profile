@@ -124,5 +124,48 @@ _fzf_comprun() {
   esac
 }
 
+# if [ -f ~/sw/fzf-tab-completion/bash/fzf-bash-completion.sh ]
+# then
+#     source ~/sw/fzf-tab-completion/bash/fzf-bash-completion.sh
+#     _fzf_bash_completion_loading_msg() { echo "${PS1@P}${READLINE_LINE}" | tail -n1; }
+#     bind -x '"\t": fzf_bash_completion'
+# fi
+
+# find-in-file - usage: fif <searchTerm>
+fif() {
+    if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+    rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+# tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
+# `tm` will allow you to select your tmux session via fzf.
+# `tm irc` will attach to the irc session (if it exists), else it will create it.
+tm() {
+    [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+    if [ $1 ]; then
+        tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+    fi
+    session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+}
+
+fman() {
+    man -k . | fzf -q "$1" --prompt='man> ' --preview $(echo {} | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man | col -bx | bat -l man -p --color always) | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
+}
+
+# Dotbare
+test -f $HOME/sw/dotbare/dotbare.plugin.bash && . $_
+
 # Z for jumping around
-[ -f $HOME/sw/z/z.sh ] && . $HOME/sw/z/z.sh
+test -f $HOME/sw/z/z.sh && . $_
+export _Z_DATA=~/.cache/z/.z
+unalias z 2> /dev/null
+z() {
+    [ $# -gt 0 ] && _z "$*" && return
+    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
+# Forgit
+test -f $HOME/sw/forgit/forgit.plugin.sh && . $_
+
+# has
+export HAS_ALLOW_UNSAFE=y
