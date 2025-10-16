@@ -1,0 +1,46 @@
+directory: ~/Music/library
+library: ~/Music/library/library.db
+
+paths:
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: Singletons/$artist - $title
+  comp: Compilations/$album%aunique{}/$track $title
+  albumtype:soundtrack: Soundtracks/$album/$track $title
+
+threaded: yes
+
+asciify_paths: yes
+original_date: yes
+
+import:
+  write: yes
+  copy: yes
+  incremental: yes
+  group_albums: yes
+  genres: yes
+  log: ~/Music/library/beets.log
+
+ui:
+  color: yes
+
+plugins: edit fetchart embedart missing convert # mpdupdate
+
+edit:
+  itemfields: track title artist album album_id comp
+  albumfields: album albumartist comp genre
+
+fetchart:
+  auto: yes
+
+embedart:
+  auto: yes
+  ifempty: yes
+
+missing:
+  format: $albumartist - $album - $title
+  count: yes
+  total: no
+
+# mpd:
+#   host: localhost
+#   port: 6600
