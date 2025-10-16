@@ -32,7 +32,6 @@ shopt -s checkwinsize # For re-sizeable terminals
 umask 022
 
 # The prompt
-# source ~/pureline/pureline ~/.pureline.conf
 eval "$(starship init bash)"
 
 # Completion
