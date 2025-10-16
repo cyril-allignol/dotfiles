@@ -17,15 +17,28 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias back='cd $OLDPWD'
+
+# File manipulation
 alias cp='cp -ip'
 alias cpv='rsync -ah --info=progress2'
 alias mv='mv -i'
-#alias rm='rm -i'
-alias la='ls -A'
-alias ll='ls -Ahl'
-alias lsd='ls -o | grep ^d'
+
+#Listing
 alias ls='ls --ignore-backups --classify --color'
-alias back='cd $OLDPWD'
+alias ll='ls -hl --group-directories-first'
+alias lst='ll -rt'
+alias lsd='ls -o | grep ^d'
+if [ "$(command -v exa)" 2>&1 ]
+then
+    alias ls='exa --time-style long-iso'
+    alias ll='ls -lg --group-directories-first'
+    alias lst='ll -s modified'
+    alias lsd='ll -D'
+    alias tree='ls --tree'
+fi
+alias l='ll'
+alias la='ll -a'
 
 # Colorize
 alias grep='grep --color=auto'
