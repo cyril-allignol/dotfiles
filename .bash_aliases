@@ -35,6 +35,8 @@ then
     alias ll='ls -lg --group-directories-first'
     alias lst='ll -s modified'
     alias lsd='ll -D'
+    alias lsg='ls --git-ignore'
+    alias llg='ll --git-ignore'
     alias tree='ls --tree'
 fi
 alias l='ll'
